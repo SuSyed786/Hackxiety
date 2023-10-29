@@ -24,23 +24,23 @@ class HomeActivity : AppCompatActivity() {
         username.text = "Hi "+reguser
         val sosButton = findViewById<Button>(R.id.sosImg)
         sosButton.setOnClickListener {
-            val intent = Intent(this, SOSAcitvity::class.java)
-            startActivity(intent)
+            openAcitvity(this, SOSAcitvity::class.java)
+            
         }
         val profile = findViewById<Button>(R.id.imageViewProfile)
         profile.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
+            openAcitvity(this, ProfileActivity::class.java)
+           
         }
         val gratitudeView = findViewById<CardView>(R.id.gratitudeJournaling)
         gratitudeView.setOnClickListener {
-            val intent = Intent(this, AffirmationsAcitvity::class.java)
-            startActivity(intent)
+            openAcitvity(AffirmationsAcitvity::class.java)
+           
         }
         val eduView = findViewById<CardView>(R.id.resourcesCard)
         eduView.setOnClickListener {
-            val intent = Intent(this, EduActivity::class.java)
-            startActivity(intent)
+            openAcitvity(EduActivity::class.java)
+         
         }
         val medhelp = findViewById<CardView>(R.id.getHelp)
             medhelp.setOnClickListener {
@@ -51,7 +51,10 @@ class HomeActivity : AppCompatActivity() {
 
 
     }
-
+    private fun openAcitvity(activity:Class){
+        val intent = Intent(this, acitvity)
+            startActivity(intent)
+    }
     private fun openLinkInBrowser(url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         startActivity(intent)
