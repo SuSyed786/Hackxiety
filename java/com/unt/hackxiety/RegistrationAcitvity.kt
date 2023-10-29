@@ -59,8 +59,11 @@ class RegistrationActivity : AppCompatActivity() {
     }
 
     private fun validateInputs(name: String, email: String, password: String): Boolean {
+        assert(name.isNotEmpty()) { "Name should not be empty." }
+        assert(email.isNotEmpty()) { "Email should not be empty." }
+        assert(password.isNotEmpty()) { "Password should not be empty." }
     
-        return true
+            return true
     }
 
     private fun onRegistrationSuccess() {
