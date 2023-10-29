@@ -7,14 +7,17 @@ import {NextFunction, Request, Response} from "express";
 import {db} from "../server";
 import {ObjectId, WithId} from "mongodb";
 import HTTP from "../utils/statusCodeConfig";
+function sendJSONResponse(res: Response, statusCode: number, data: any) {
+  res.status(statusCode).json(data);
+}
 export default class User {
   constructor() {}
-
+  
   async getUsers(req: Request, res: Response, next: NextFunction) {
     const users = <WithId<UserDetails>[]>(
       await db.collection("Users").find().toArray()
     );
-    res.status(HTTP.OK).json(users);
+    sendJSONResponse(res, HTTP.OK, users);
   }
 
   async getProfile(req: Request, res: Response, next: NextFunction) {
@@ -29,14 +32,14 @@ export default class User {
         },
       }
     );
-    res.status(HTTP.OK).json({
+    sendJSONResponse(res, HTTP.OK, {
       ...user,
       image: process.env.MINIO_IMAGE_URL!.replace("%USERNAME%", user.username),
     });
   }
 
   async uploadImage(req: Request, res: Response, next: NextFunction) {
-    res.status(HTTP.OK).json({
+    sendJSONResponse(res, HTTP.OK, {
       message: "Image uploaded",
     });
   }
