@@ -57,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
+        val forGotPassword = binding.forgotPassword
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -136,6 +137,10 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                 }
 
+            }
+            forgotPassword.setOnClickListener {
+                val intent = Intent(this, ForgotPasswordActivity::class.java)
+                startActivity(intent)
             }
         }
     }
