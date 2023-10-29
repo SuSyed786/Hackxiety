@@ -16,8 +16,10 @@ class ProfileActivity : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
         val username = findViewById<EditText>(R.id.nameEditText)
+        assert(reguser != null) { "reguser should not be null" }
         username.setText(sharedPreferences.getString("reguser",null))
         val email = findViewById<EditText>(R.id.emailEditText)
+        assert(email.text.isNotBlank()) { "Email must not be blank" }
         email.setText(sharedPreferences.getString("email",null))
         val phone = findViewById<EditText>(R.id.PhoneEditText)
         phone.setText(sharedPreferences.getString("phone",null))
